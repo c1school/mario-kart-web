@@ -1,13 +1,15 @@
+
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>마리오 카트: 질주 본능</title>
-    
+    <title>MARIO KART</title>
+
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
+
     <style>
         /* --- 1. 기본 설정 및 변수 --- */
         :root {
@@ -24,13 +26,17 @@
         }
 
         body {
-            font-family: 'Noto Sans KR', sans-serif; /* 폰트 통일 */
+            font-family: 'Noto Sans KR', sans-serif;
+            /* 폰트 통일 */
             background-color: #f0f0f0;
             color: #333;
-            overflow-x: hidden; /* 가로 스크롤 방지 */
+            overflow-x: hidden;
+            /* 가로 스크롤 방지 */
         }
 
-        h1, h2, h3 {
+        h1,
+        h2,
+        h3 {
             font-family: 'Noto Sans KR', sans-serif;
             font-weight: 900;
             text-transform: uppercase;
@@ -47,7 +53,7 @@
             width: 100%;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
         .logo {
@@ -92,8 +98,11 @@
         .hero::before {
             content: '';
             position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.5); 
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
             z-index: 0;
         }
 
@@ -158,10 +167,11 @@
             background: white;
             border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s;
             text-align: center;
-            cursor: pointer; /* 클릭 가능하다는 표시 */
+            cursor: pointer;
+            /* 클릭 가능하다는 표시 */
         }
 
         .card:hover {
@@ -173,33 +183,63 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 20px; 
+            padding: 20px;
         }
 
         .card-img img {
             max-width: 100%;
             max-height: 100%;
             object-fit: contain;
-            filter: drop-shadow(5px 5px 5px rgba(0,0,0,0.2));
+            filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.2));
             transition: transform 0.3s;
         }
-        
+
         .card:hover .card-img img {
             transform: scale(1.1);
         }
-        
-        /* 캐릭터별 배경색 */
-        .mario .card-img { background: #ffcccc; }
-        .luigi .card-img { background: #ccffcc; }
-        .peach .card-img { background: #ffe6f2; }
-        .bowser .card-img { background: #fff5cc; }
-        .yoshi .card-img { background: #dfffd6; }
-        .toad .card-img { background: #e6f7ff; }
-        .dk .card-img { background: #f4e1d2; }
-        .wario .card-img { background: #fffae6; }
 
-        .card-content { padding: 20px; }
-        .card h3 { margin-bottom: 10px; font-size: 1.5rem; font-weight: 700; }
+        /* 캐릭터별 배경색 */
+        .mario .card-img {
+            background: #ffcccc;
+        }
+
+        .luigi .card-img {
+            background: #ccffcc;
+        }
+
+        .peach .card-img {
+            background: #ffe6f2;
+        }
+
+        .bowser .card-img {
+            background: #fff5cc;
+        }
+
+        .yoshi .card-img {
+            background: #dfffd6;
+        }
+
+        .toad .card-img {
+            background: #e6f7ff;
+        }
+
+        .dk .card-img {
+            background: #f4e1d2;
+        }
+
+        .wario .card-img {
+            background: #fffae6;
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        .card h3 {
+            margin-bottom: 10px;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
 
         /* --- 5. 특징 섹션 --- */
         .features {
@@ -223,6 +263,28 @@
             padding: 20px;
             border: 2px dashed #555;
             border-radius: 15px;
+
+            cursor: pointer;
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        .feature-item:hover {
+            background: #333;
+            transform: translateY(-5px);
+        }
+
+        .feature-item p {
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            margin-top: 0;
+            transition: max-height 0.4s ease, opacity 0.4s ease, margin-top 0.4s ease;
+        }
+
+        .feature-item.active p {
+            max-height: 200px;
+            opacity: 1;
+            margin-top: 10px;
         }
 
         .feature-item i {
@@ -241,10 +303,13 @@
 
         /* --- 7. 모달(팝업) 스타일 [NEW] --- */
         .modal-overlay {
-            display: none; /* 평소에는 안 보임 */
+            display: none;
+            /* 평소에는 안 보임 */
             position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             background-color: rgba(0, 0, 0, 0.7);
             z-index: 2000;
             justify-content: center;
@@ -253,7 +318,8 @@
         }
 
         .modal-overlay.active {
-            display: flex; /* 활성화되면 보임 */
+            display: flex;
+            /* 활성화되면 보임 */
         }
 
         .modal-content {
@@ -264,18 +330,22 @@
             max-width: 500px;
             text-align: center;
             position: relative;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
             animation: slideDown 0.3s forwards;
         }
 
         .close-btn {
             position: absolute;
-            top: 15px; right: 20px;
+            top: 15px;
+            right: 20px;
             font-size: 2rem;
             cursor: pointer;
             color: #aaa;
         }
-        .close-btn:hover { color: #000; }
+
+        .close-btn:hover {
+            color: #000;
+        }
 
         .select-btn {
             margin-top: 25px;
@@ -290,34 +360,109 @@
             transition: background 0.3s;
             font-family: 'Noto Sans KR', sans-serif;
         }
-        .select-btn:hover { background-color: #b3000e; }
+
+        .select-btn:hover {
+            background-color: #b3000e;
+        }
+
+        /* --- 히어로 하단 카트/바이크 트랙 영역 --- */
+        .kart-track {
+            position: absolute;
+            bottom: 0px;
+            left: 0;
+            width: 100%;
+            height: 120px;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .kart {
+            position: absolute;
+            bottom: 0;
+            width: 160px;
+            /* max-width: 30vw;  필요 없으면 주석/삭제해도 됨 */
+            left: calc(100% - 160px);
+            animation: drive-left 8s linear infinite;
+        }
+
+
+        .mario-kart {
+            animation-duration: 8s;
+            animation-delay: -5s;
+        }
+
+        .peach-kart {
+            bottom: 10px;
+            animation-duration: 10s;
+            animation-delay: 0s;
+        }
 
         /* --- 8. 애니메이션 정의 --- */
         @keyframes bounceIn {
-            0% { transform: scale(0.1); opacity: 0; }
-            60% { transform: scale(1.2); opacity: 1; }
-            100% { transform: scale(1); }
+            0% {
+                transform: scale(0.1);
+                opacity: 0;
+            }
+
+            60% {
+                transform: scale(1.2);
+                opacity: 1;
+            }
+
+            100% {
+                transform: scale(1);
+            }
         }
 
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        @keyframes slideDown { from { transform: translateY(-50px); } to { transform: translateY(0); } }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-50px);
+            }
+
+            to {
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes drive-left {
+            0% {
+                left: calc(100% - 160px);
+            }
+
+            100% {
+                left: 0;
+            }
+        }
 
         .reveal {
             opacity: 0;
             transform: translateY(30px);
             transition: all 0.8s ease;
         }
+
         .reveal.active {
             opacity: 1;
             transform: translateY(0);
         }
     </style>
 </head>
+
 <body>
 
     <nav>
         <div class="logo">
-            <i class="fas fa-gamepad"></i> NINTENDO WORLD
+            <i class="fas fa-gamepad"></i> MARIO KART
         </div>
         <div class="nav-links">
             <a href="#home">홈</a>
@@ -327,9 +472,15 @@
     </nav>
 
     <section id="home" class="hero">
-        <h1>MARIO KART</h1>
+        <h1>마리오 카트</h1>
         <p>전 세계 친구들과 함께 달리는 무한 질주!<br>아이템을 사용해 역전의 드라마를 만들어보세요.</p>
-        <a href="#characters" class="btn">START ENGINE</a>
+        <a href="#characters" class="btn">시동 걸기!</a>
+        <div class="kart-track">
+            <!-- 오른쪽에서 왼쪽으로 달리는 마리오 카트 -->
+            <img src="mario_kart.png" alt="마리오 카트" class="kart mario-kart">
+            <!-- 오른쪽에서 왼쪽으로 달리는 피치 바이크 -->
+            <img src="peach_kart.png" alt="피치 바이크" class="kart peach-kart">
+        </div>
     </section>
 
     <section id="characters" class="characters reveal">
@@ -398,7 +549,7 @@
         <h2 class="section-title" style="color:white">게임 특징</h2>
         <div class="feature-container">
             <div class="feature-item">
-                <i class="fas fa-rocket"></i>
+                <i class="fa-solid fa-rocket"></i>
                 <h3>다양한 아이템</h3>
                 <p>등껍질, 바나나, 버섯 등 다양한 아이템을 활용해 상대를 방해하고 순위를 뒤집으세요.</p>
             </div>
@@ -460,27 +611,27 @@
 
         // 3. 캐릭터 카드 클릭 이벤트 (Click Event, DOM 제어)
         cards.forEach(card => {
-            card.addEventListener('click', function() {
+            card.addEventListener('click', function () {
                 // 클릭한 카드의 내용 가져오기
                 const name = this.querySelector('h3').innerText;
                 const desc = this.querySelector('p').innerText;
-                
+
                 // 모달창에 내용 심어주기
                 modalTitle.innerText = name;
                 modalDesc.innerText = desc + "\n\n이 레이서와 함께 그랑프리에 도전하시겠습니까?";
-                
+
                 // 모달창 띄우기 (클래스 추가)
                 modal.classList.add('active');
             });
         });
 
         // 4. 모달 닫기 버튼 클릭 이벤트
-        closeBtn.addEventListener('click', function() {
+        closeBtn.addEventListener('click', function () {
             modal.classList.remove('active');
         });
 
         // 5. 모달 바깥 배경 클릭 시 닫기
-        window.addEventListener('click', function(event) {
+        window.addEventListener('click', function (event) {
             if (event.target == modal) {
                 modal.classList.remove('active');
             }
@@ -496,6 +647,24 @@
                 });
             });
         });
+
+        // 7. [추가] 게임 특징 아이콘(카드) 클릭 시 설명 펼치기 (Click Event)
+        const featureItems = document.querySelectorAll('.feature-item');  // 게임 특징 카드들
+
+        featureItems.forEach(item => {
+            item.addEventListener('click', function () {
+                // 1) 다른 카드들은 모두 접기 (한 개만 열리게 하고 싶을 때)
+                featureItems.forEach(other => {
+                    if (other !== item) {
+                        other.classList.remove('active');
+                    }
+                });
+
+                // 2) 클릭한 카드만 토글 (접혔다 -> 펼치기, 펼쳐졌으면 -> 접기)
+                item.classList.toggle('active');
+            });
+        });
     </script>
 </body>
+
 </html>
