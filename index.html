@@ -1,17 +1,15 @@
-
 <!DOCTYPE html>
 <html lang="ko">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MARIO KART</title>
+    <title>마리오 카트: 질주 본능</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
     <style>
-        /* --- 1. 기본 설정 및 변수 --- */
         :root {
             --mario-red: #E60012;
             --coin-yellow: #FFD200;
@@ -27,11 +25,9 @@
 
         body {
             font-family: 'Noto Sans KR', sans-serif;
-            /* 폰트 통일 */
             background-color: #f0f0f0;
             color: #333;
             overflow-x: hidden;
-            /* 가로 스크롤 방지 */
         }
 
         h1,
@@ -42,7 +38,6 @@
             text-transform: uppercase;
         }
 
-        /* --- 2. 네비게이션 --- */
         nav {
             background: rgba(230, 0, 18, 0.95);
             padding: 1rem 2rem;
@@ -75,10 +70,8 @@
             color: var(--coin-yellow);
         }
 
-        /* --- 3. 히어로 섹션 (메인 배너) --- */
         .hero {
             height: 100vh;
-            /* 배경 이미지 설정 */
             background-image: url('1.jpg');
             background-size: cover;
             background-position: center;
@@ -94,7 +87,6 @@
             overflow: hidden;
         }
 
-        /* 배경 어둡게 처리 */
         .hero::before {
             content: '';
             position: absolute;
@@ -143,7 +135,6 @@
             box-shadow: none;
         }
 
-        /* --- 4. 캐릭터 섹션 --- */
         .characters {
             padding: 80px 20px;
             max-width: 1200px;
@@ -171,7 +162,6 @@
             transition: transform 0.3s;
             text-align: center;
             cursor: pointer;
-            /* 클릭 가능하다는 표시 */
         }
 
         .card:hover {
@@ -198,7 +188,6 @@
             transform: scale(1.1);
         }
 
-        /* 캐릭터별 배경색 */
         .mario .card-img {
             background: #ffcccc;
         }
@@ -241,7 +230,6 @@
             font-weight: 700;
         }
 
-        /* --- 5. 특징 섹션 --- */
         .features {
             background-color: var(--dark-bg);
             color: white;
@@ -263,7 +251,6 @@
             padding: 20px;
             border: 2px dashed #555;
             border-radius: 15px;
-
             cursor: pointer;
             transition: background 0.3s, transform 0.3s;
         }
@@ -293,7 +280,6 @@
             color: var(--coin-yellow);
         }
 
-        /* --- 6. 푸터 --- */
         footer {
             background: #111;
             color: #888;
@@ -301,10 +287,8 @@
             padding: 20px;
         }
 
-        /* --- 7. 모달(팝업) 스타일 [NEW] --- */
         .modal-overlay {
             display: none;
-            /* 평소에는 안 보임 */
             position: fixed;
             top: 0;
             left: 0;
@@ -319,7 +303,6 @@
 
         .modal-overlay.active {
             display: flex;
-            /* 활성화되면 보임 */
         }
 
         .modal-content {
@@ -365,7 +348,6 @@
             background-color: #b3000e;
         }
 
-        /* --- 히어로 하단 카트/바이크 트랙 영역 --- */
         .kart-track {
             position: absolute;
             bottom: 0px;
@@ -381,7 +363,6 @@
             position: absolute;
             bottom: 0;
             width: 160px;
-            /* max-width: 30vw;  필요 없으면 주석/삭제해도 됨 */
             left: calc(100% - 160px);
             animation: drive-left 8s linear infinite;
         }
@@ -398,7 +379,6 @@
             animation-delay: 0s;
         }
 
-        /* --- 8. 애니메이션 정의 --- */
         @keyframes bounceIn {
             0% {
                 transform: scale(0.1);
@@ -462,7 +442,7 @@
 
     <nav>
         <div class="logo">
-            <i class="fas fa-gamepad"></i> MARIO KART
+            <i class="fas fa-gamepad"></i> NINTENDO WORLD
         </div>
         <div class="nav-links">
             <a href="#home">홈</a>
@@ -472,13 +452,11 @@
     </nav>
 
     <section id="home" class="hero">
-        <h1>마리오 카트</h1>
+        <h1>MARIO KART</h1>
         <p>전 세계 친구들과 함께 달리는 무한 질주!<br>아이템을 사용해 역전의 드라마를 만들어보세요.</p>
-        <a href="#characters" class="btn">시동 걸기!</a>
+        <a href="#characters" class="btn">START ENGINE</a>
         <div class="kart-track">
-            <!-- 오른쪽에서 왼쪽으로 달리는 마리오 카트 -->
             <img src="mario_kart.png" alt="마리오 카트" class="kart mario-kart">
-            <!-- 오른쪽에서 왼쪽으로 달리는 피치 바이크 -->
             <img src="peach_kart.png" alt="피치 바이크" class="kart peach-kart">
         </div>
     </section>
@@ -566,6 +544,8 @@
         </div>
     </section>
 
+    <section id="character_selected" class="character_selected reveal"></section>
+
     <footer>
         <p>&copy; 2025 Mario Kart Fan Page for Web Programming Assignment.</p>
     </footer>
@@ -579,14 +559,14 @@
             <div class="modal-body">
                 <br>
                 <p id="modal-desc">캐릭터 설명이 여기에 뜹니다.</p>
-                <button class="select-btn" onclick="alert('캐릭터 선택이 완료되었습니다! (Demo)')">선택하기</button>
+                <button class="select-btn" onclick="selectCharacter()">선택하기</button>
             </div>
         </div>
     </div>
 
     <script>
-        // 1. 스크롤 애니메이션 (Scroll Event)
         window.addEventListener('scroll', reveal);
+
 
         function reveal() {
             var reveals = document.querySelectorAll('.reveal');
@@ -602,45 +582,37 @@
             }
         }
 
-        // 2. 모달(팝업) 기능 관련 변수
         const modal = document.getElementById('char-modal');
         const modalTitle = document.getElementById('modal-title');
         const modalDesc = document.getElementById('modal-desc');
         const closeBtn = document.querySelector('.close-btn');
         const cards = document.querySelectorAll('.card');
 
-        // 3. 캐릭터 카드 클릭 이벤트 (Click Event, DOM 제어)
         cards.forEach(card => {
             card.addEventListener('click', function () {
-                // 클릭한 카드의 내용 가져오기
                 const name = this.querySelector('h3').innerText;
                 const desc = this.querySelector('p').innerText;
 
-                // 모달창에 내용 심어주기
                 modalTitle.innerText = name;
                 modalDesc.innerText = desc + "\n\n이 레이서와 함께 그랑프리에 도전하시겠습니까?";
 
-                // 모달창 띄우기 (클래스 추가)
                 modal.classList.add('active');
             });
         });
 
-        // 4. 모달 닫기 버튼 클릭 이벤트
         closeBtn.addEventListener('click', function () {
             modal.classList.remove('active');
         });
 
-        // 5. 모달 바깥 배경 클릭 시 닫기
         window.addEventListener('click', function (event) {
             if (event.target == modal) {
                 modal.classList.remove('active');
             }
         });
 
-        // 6. 부드러운 스크롤 이동 (Click Event, preventDefault)
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
-                e.preventDefault(); // 기본 클릭 동작(팍 이동) 막기
+                e.preventDefault();
 
                 document.querySelector(this.getAttribute('href')).scrollIntoView({
                     behavior: 'smooth'
@@ -648,22 +620,66 @@
             });
         });
 
-        // 7. [추가] 게임 특징 아이콘(카드) 클릭 시 설명 펼치기 (Click Event)
-        const featureItems = document.querySelectorAll('.feature-item');  // 게임 특징 카드들
+        const featureItems = document.querySelectorAll('.feature-item');
 
         featureItems.forEach(item => {
             item.addEventListener('click', function () {
-                // 1) 다른 카드들은 모두 접기 (한 개만 열리게 하고 싶을 때)
                 featureItems.forEach(other => {
                     if (other !== item) {
                         other.classList.remove('active');
                     }
                 });
 
-                // 2) 클릭한 카드만 토글 (접혔다 -> 펼치기, 펼쳐졌으면 -> 접기)
                 item.classList.toggle('active');
             });
         });
+
+        function selectCharacter() {
+            const characterName = document.getElementById('modal-title').innerText;
+
+            const imageMap = {
+                "마리오": "mario_selected.png",
+                "루이지": "luigi_selected.png",
+                "피치 공주": "peach_selected.png",
+                "요시": "yoshi_selected.png",
+                "키노피오": "toad_selected.png",
+                "동키콩": "dk_selected.png",
+                "와리오": "wario_selected.png",
+                "쿠파": "bowser_selected.png"
+            };
+
+            const imageName = imageMap[characterName];
+
+            const targetSection = document.getElementById("character_selected");
+
+            if (imageName) {
+                targetSection.innerHTML = `
+					<div style="text-align: center; padding: 60px 20px;">
+						<h2 style="color: #E60012; font-size: 2.5rem; margin-bottom: 20px;">
+							GAME START!
+						</h2>
+						<div style="margin: 20px auto; width: 300px;">
+							<img src="${imageName}" alt="${characterName}" style="width: 100%; border-radius: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.2); animation: bounceIn 1s;">
+						</div>
+						<p style="font-size: 1.5rem; font-weight: bold; margin-top: 20px;">
+							'${characterName}'(을)를 선택하셨습니다!<br>
+							이제 레이스를 시작하세요.
+						</p>
+						<a href="https://www.nintendo.com/kr/switch/aabpa/index.html" class="btn" style="margin-top:30px; display:inline-block;">시작하기</a>
+					</div>
+				`;
+
+                document.getElementById('char-modal').classList.remove('active');
+
+                setTimeout(() => {
+                    targetSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }, 100);
+
+                alert(characterName + " 선택 완료! 아래쪽을 확인하세요.");
+            } else {
+                alert("캐릭터 정보를 찾을 수 없습니다.");
+            }
+        }
     </script>
 </body>
 
